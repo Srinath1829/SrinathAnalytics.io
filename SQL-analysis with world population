@@ -1,1 +1,109 @@
+/*
+Data Analysis of World Population
+*/
+
+-- Step 1: Retrieving the Entire Dataset
+-- This query fetches all the data available in the world population dataset, providing an overview of the entire dataset.
+
+SELECT * FROM population_world.world_population_data;
+
+
+-- Step 2: Summary Statistics for Population and Area
+-- This query calculates the minimum, maximum, and average values for population and other attributes across various years,
+   giving a comprehensive view of population trends over time.
+
+SELECT
+    MIN(`1980`) AS min_1980,
+    MAX(`1980`) AS max_1980,
+    AVG(`1980`) AS avg_1980,
+    -- Similar calculations for other years and attributes...
+FROM population_world.world_population_data;
+
+
+-- Step 3: Viewing Sample Data
+-- By displaying a sample of the data, you get a quick glance at the dataset's structure and content.
+
+SELECT *
+FROM population_world.world_population_data
+LIMIT 5;
+
+
+-- Step 4: Top 10 Countries by Projected 2050 Population
+-- This query identifies the countries that are projected to have the highest populations in the year 2050, offering insight into future demographic trends.
+
+SELECT
+    country,
+    `2050`
+FROM population_world.world_population_data
+ORDER BY `2050` DESC
+LIMIT 10;
+
+
+-- Step 5: Exploring Dataset Schema
+-- Describing the dataset schema provides a detailed breakdown of the structure, data types, and column names.
+
+  DESCRIBE population_world.world_population_data;
+
+
+-- Step 6: Comparison of Population Between 1980 and 2021
+-- This query focuses on the population comparison for specific countries between the years 1980 and 2021, showcasing changes over time.
+
+SELECT Country, 1980, 2021
+FROM population_world.world_population_data
+WHERE Country IN ('China', 'India', 'United States');
+
+
+-- Step 7: Average Growth Rate Across All Countries
+-- Calculating the average growth rate offers an understanding of the overall population growth trend.
+
+SELECT AVG(growthRate) AS avg_growth_rate
+FROM population_world.world_population_data;
+
+
+-- Step 8: Top 10 Countries by Population in 2022
+-- This query highlights the countries with the highest populations in the current year, providing an up-to-date perspective.
+
+SELECT country, `2022`
+FROM population_world.world_population_data
+ORDER BY `2022` DESC
+LIMIT 10;
+
+
+-- Step 9: Countries with Highest Population Increase (2021-2022)
+-- This query reveals countries experiencing the most significant population growth over a one-year period.
+
+SELECT country, (`2022` - `2021`) AS population_increase
+FROM population_world.world_population_data
+ORDER BY population_increase DESC
+LIMIT 10;
+
+
+-- Step 10: Countries with Highest Growth Rate in 2021
+-- This query identifies countries with the most rapid population growth in the specified year.
+
+SELECT country, `2021` AS population_2021, growthRate
+FROM population_world.world_population_data
+ORDER BY growthRate DESC
+LIMIT 10;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
